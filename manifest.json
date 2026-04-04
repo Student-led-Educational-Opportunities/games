@@ -1,0 +1,82 @@
+[
+  {
+    "name": "gn-math",
+    "url": "https://cdn.jsdelivr.net/gh/gn-math/gn-math-DONTDMCA@main/singlefile.html",
+    "type": "blob",
+    "color": "#fc2651",
+    "fontUrl": "https://cdn.jsdelivr.net/gh/sealiee11/gnmathstuff@main/minecraft.otf",
+    "fontName": "mc"
+  },
+  {
+    "name": "Request",
+    "url": "https://forms.gle/NAJQuPeTQnn6Ksz96",
+    "type": "direct",
+    "color": "#ffff00",
+    "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/m6x11plusplus.otf",
+    "fontName": "m6x11"
+  },
+  {
+    "name": "HK Silksong",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/hollowknightsilksong.html",
+    "type": "blob",
+    "color": "#880000",
+    "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/TrajanPro-Regular.woff",
+    "fontName": "trajan"
+  },
+  {
+    "name": "Hollow Knight",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/hollowknight.html",
+    "type": "blob",
+    "color": "#3a3263",
+    "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/TrajanPro-Regular.woff",
+    "fontName": "trajan"
+  },
+  {
+    "name": "Five Nights at Epstine's",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/fnae.html",
+    "type": "blob",
+    "color": "#5b4bad",
+    "fontUrl": "",
+    "fontName": "sans-serif"
+  },
+  {
+    "name": "People Playground",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/ppg.html",
+    "type": "blob",
+    "color": "#3b3f47",
+    "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/PerfectDOS.ttf",
+    "fontName": "perfectdos"
+  },
+  {
+    "name": "Balatro",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/balatro.html",
+    "type": "blob",
+    "color": "#ff0000",
+    "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/m6x11plusplus.otf",
+    "fontName": "m6x11"
+  },
+  {
+    "name": "Hotline Miami",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/HotlineMiami.html",
+    "type": "blob",
+    "color": "#e30bb1",
+    "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/ShogunsClan.ttf",
+    "fontName": "gamefont"
+  },
+  {
+    "name": "Slime Rancher",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/SlimeRancher.html",
+    "type": "blob",
+    "color": "#e86dda",
+    "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/Sofia-Regular.ttf",
+    "fontName": "m6x11"
+  },
+  {
+    "name": "ULTRAKILL",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/ULTRAKILL.html",
+    "type": "blob",
+    "color": "#0b0073",
+    "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/VCR_OSD_MONO.ttf",
+    "fontName": "gamefont"
+  }
+]
