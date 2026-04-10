@@ -78,5 +78,22 @@
     "color": "#0b0073",
     "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/VCR_OSD_MONO.ttf",
     "fontName": "gamefont"
+  },
+  {
+    "name": 'Brotato",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/Brotato.html",
+    "type": "blob",
+    "color": "#705f5e",
+    "fontUrl": "",
+    "fontName": "sans-serif"
+  },
+  {
+    "name": "Buckshot Roulette",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/Buckshot.html",
+    "type": "blob",
+    "color": "#0b0073",
+    "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/VCR_OSD_MONO.ttf",
+    "fontName": "gamefont"
   }
+
 ]
