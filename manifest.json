@@ -17,83 +17,103 @@
   },
   {
     "name": "HK Silksong",
-    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/hollowknightsilksong.html",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/chunks",
     "type": "blob",
     "color": "#880000",
     "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/TrajanPro-Regular.woff",
-    "fontName": "trajan"
+    "fontName": "trajan",
+    "gameIdHex4": "0002",
+    "chunkCount": 1
   },
   {
     "name": "Hollow Knight",
-    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/hollowknight.html",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/chunks",
     "type": "blob",
     "color": "#3a3263",
     "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/TrajanPro-Regular.woff",
-    "fontName": "trajan"
+    "fontName": "trajan",
+    "gameIdHex4": "0003",
+    "chunkCount": 1
   },
   {
     "name": "Five Nights at Epstine's",
-    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/fnae.html",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/chunks",
     "type": "blob",
     "color": "#5b4bad",
     "fontUrl": "",
-    "fontName": "sans-serif"
+    "fontName": "sans-serif",
+    "gameIdHex4": "0004",
+    "chunkCount": 1
   },
   {
     "name": "People Playground",
-    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/ppg.html",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/chunks",
     "type": "blob",
     "color": "#3b3f47",
     "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/PerfectDOS.ttf",
-    "fontName": "perfectdos"
+    "fontName": "perfectdos",
+    "gameIdHex4": "0005",
+    "chunkCount": 1
   },
   {
     "name": "Balatro",
-    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/balatro.html",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/chunks",
     "type": "blob",
     "color": "#ff0000",
     "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/m6x11plusplus.otf",
-    "fontName": "m6x11"
+    "fontName": "m6x11",
+    "gameIdHex4": "0006",
+    "chunkCount": 1
   },
   {
     "name": "Hotline Miami",
-    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/HotlineMiami.html",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/chunks",
     "type": "blob",
     "color": "#e30bb1",
     "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/ShogunsClan.ttf",
-    "fontName": "gamefont"
+    "fontName": "gamefont",
+    "gameIdHex4": "0007",
+    "chunkCount": 1
   },
   {
     "name": "Slime Rancher",
-    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/SlimeRancher.html",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/chunks",
     "type": "blob",
     "color": "#e86dda",
     "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/Sofia-Regular.ttf",
-    "fontName": "m6x11"
+    "fontName": "m6x11",
+    "gameIdHex4": "0008",
+    "chunkCount": 1
   },
   {
     "name": "ULTRAKILL",
-    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/ULTRAKILL.html",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/chunks",
     "type": "blob",
     "color": "#0b0073",
     "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/VCR_OSD_MONO.ttf",
-    "fontName": "gamefont"
+    "fontName": "gamefont",
+    "gameIdHex4": "0009",
+    "chunkCount": 1
   },
   {
     "name": "Brotato",
-    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/Brotato.html",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/chunks",
     "type": "blob",
     "color": "#705f5e",
     "fontUrl": "",
-    "fontName": "sans-serif"
+    "fontName": "sans-serif",
+    "gameIdHex4": "000a",
+    "chunkCount": 1
   },
   {
     "name": "Buckshot Roulette",
-    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/Buckshot.html",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/chunks",
     "type": "blob",
     "color": "#0b0073",
     "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/VCR_OSD_MONO.ttf",
-    "fontName": "gamefont"
+    "fontName": "gamefont",
+    "gameIdHex4": "000b",
+    "chunkCount": 1
   },
   {
     "name": "Scav Prototype",
