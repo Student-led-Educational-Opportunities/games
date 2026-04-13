@@ -71,7 +71,7 @@
     "type": "blob",
     "color": "#e30bb1",
     "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/ShogunsClan.ttf",
-    "fontName": "gamefont",
+    "fontName": "shogunsclan",
     "gameIdHex4": "0007",
     "chunkCount": 1
   },
@@ -81,7 +81,7 @@
     "type": "blob",
     "color": "#e86dda",
     "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/Sofia-Regular.ttf",
-    "fontName": "m6x11",
+    "fontName": "sofia",
     "gameIdHex4": "0008",
     "chunkCount": 1
   },
@@ -91,7 +91,7 @@
     "type": "blob",
     "color": "#0b0073",
     "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/VCR_OSD_MONO.ttf",
-    "fontName": "gamefont",
+    "fontName": "vcrosd",
     "gameIdHex4": "0009",
     "chunkCount": 1
   },
@@ -111,7 +111,7 @@
     "type": "blob",
     "color": "#0b0073",
     "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/VCR_OSD_MONO.ttf",
-    "fontName": "gamefont",
+    "fontName": "vcrosd",
     "gameIdHex4": "000b",
     "chunkCount": 1
   },
