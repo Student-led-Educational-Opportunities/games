@@ -94,6 +94,25 @@
     "color": "#0b0073",
     "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/VCR_OSD_MONO.ttf",
     "fontName": "gamefont"
+  },
+  {
+    "name": "Scav Prototype",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/chunks",
+    "type": "blob",
+    "gameIdHex4": "0000",
+    "chunkCount": 5,
+    "color": "#4a4a4a",
+    "fontUrl": "",
+    "fontName": "sans-serif"
+  },
+  {
+    "name": "Tuff Client",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/chunks",
+    "type": "blob",
+    "gameIdHex4": "0001",
+    "chunkCount": 4,
+    "color": "#8b4513",
+    "fontUrl": "",
+    "fontName": "sans-serif"
   }
-
 ]
