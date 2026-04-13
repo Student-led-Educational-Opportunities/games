@@ -100,8 +100,8 @@
     "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/chunks",
     "type": "blob",
     "color": "#705f5e",
-    "fontUrl": "",
-    "fontName": "sans-serif",
+    "fontUrl": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/fonts@master/chewypro.otf",
+    "fontName": "chewypro",
     "gameIdHex4": "000a",
     "chunkCount": 1
   },
