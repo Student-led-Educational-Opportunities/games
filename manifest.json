@@ -134,5 +134,15 @@
     "color": "#8b4513",
     "fontUrl": "",
     "fontName": "sans-serif"
+  }, 
+  {
+    "name": "Geometry Dash",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/chunks",
+    "type": "blob",
+    "gameIdHex4": "000c",
+    "chunkCount": 1,
+    "color": "#3dfc03",
+    "fontUrl": "",
+    "fontName": "sans-serif"
   }
 ]
