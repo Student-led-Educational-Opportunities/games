@@ -144,5 +144,25 @@
     "color": "#3dfc03",
     "fontUrl": "",
     "fontName": "sans-serif"
+  }, 
+  {
+    "name": "Undertale",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/chunks",
+    "type": "blob",
+    "gameIdHex4": "000d",
+    "chunkCount": 1,
+    "color": "#464d75",
+    "fontUrl": "",
+    "fontName": "sans-serif"
+  }, 
+  {
+    "name": "Deltarune",
+    "url": "https://cdn.jsdelivr.net/gh/Student-led-Educational-Opportunities/games@master/chunks",
+    "type": "blob",
+    "gameIdHex4": "000e",
+    "chunkCount": 1,
+    "color": "#754a46",
+    "fontUrl": "",
+    "fontName": "sans-serif"
   }
 ]

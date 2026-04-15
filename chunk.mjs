@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
 import fs from "node:fs";
 import fsp from "node:fs/promises";
 import path from "node:path";
@@ -7,12 +8,17 @@ import path from "node:path";
 const CHUNK_SIZE_BYTES = 20 * 1024 * 1024;
 const MAX_CHUNK_ID = 0xffff;
 const DEFAULT_KEY = 0xa5c3f17d;
+const DEFAULT_DATA_KEY = "games-chunk-data-v1";
+const CHUNK_DATA_MAGIC = Buffer.from("GDCHUNK1");
+const CHUNK_DATA_IV_BYTES = 12;
+const CHUNK_DATA_TAG_BYTES = 16;
 
 function printUsage() {
   console.log(`
 Usage:
   node chunker.js unmerge <inputFile> <outDir> <gameIdHex4>
   node chunker.js merge <chunksDir> <outputFile> [gameIdHex4]
+  node chunker.js migrate <chunksDir> [gameIdHex4]
   node chunker.js name <gameIdHex4> <chunkIdHex4>
   node chunker.js decode <chunkFileName>
 `);
@@ -42,6 +48,19 @@ function getKey() {
     throw new Error("CHUNK_NAME_KEY must be exactly 8 hex digits");
   }
   return parseInt(envKey, 16) >>> 0;
+}
+
+function getDataKey() {
+  const envKey = process.env.CHUNK_DATA_KEY;
+  if (!envKey) {
+    return createHash("sha256").update(DEFAULT_DATA_KEY, "utf8").digest();
+  }
+
+  if (!/^[0-9a-fA-F]{64}$/.test(envKey)) {
+    throw new Error("CHUNK_DATA_KEY must be exactly 64 hex digits");
+  }
+
+  return Buffer.from(envKey, "hex");
 }
 
 function rotl32(x, bits) {
@@ -86,6 +105,50 @@ function decrypt32(value, key) {
   return (((left << 16) >>> 0) | right) >>> 0;
 }
 
+function encryptChunkPayload(payload, key) {
+  const iv = randomBytes(CHUNK_DATA_IV_BYTES);
+  const cipher = createCipheriv("aes-256-gcm", key, iv);
+  const encrypted = Buffer.concat([cipher.update(payload), cipher.final()]);
+  const authTag = cipher.getAuthTag();
+
+  return Buffer.concat([CHUNK_DATA_MAGIC, iv, authTag, encrypted]);
+}
+
+function decryptChunkPayload(fileBuffer, key) {
+  if (fileBuffer.length < CHUNK_DATA_MAGIC.length) {
+    return fileBuffer;
+  }
+
+  if (!fileBuffer.subarray(0, CHUNK_DATA_MAGIC.length).equals(CHUNK_DATA_MAGIC)) {
+    return fileBuffer;
+  }
+
+  const headerLength = CHUNK_DATA_MAGIC.length + CHUNK_DATA_IV_BYTES + CHUNK_DATA_TAG_BYTES;
+  if (fileBuffer.length < headerLength) {
+    throw new Error("encrypted chunk is truncated");
+  }
+
+  const iv = fileBuffer.subarray(CHUNK_DATA_MAGIC.length, CHUNK_DATA_MAGIC.length + CHUNK_DATA_IV_BYTES);
+  const authTag = fileBuffer.subarray(
+    CHUNK_DATA_MAGIC.length + CHUNK_DATA_IV_BYTES,
+    headerLength
+  );
+  const ciphertext = fileBuffer.subarray(headerLength);
+  const decipher = createDecipheriv("aes-256-gcm", key, iv);
+  decipher.setAuthTag(authTag);
+
+  return Buffer.concat([decipher.update(ciphertext), decipher.final()]);
+}
+
+async function readChunkPayload(filePath, key) {
+  const fileBuffer = await fsp.readFile(filePath);
+  return decryptChunkPayload(fileBuffer, key);
+}
+
+async function writeEncryptedChunk(filePath, payload, key) {
+  await fsp.writeFile(filePath, encryptChunkPayload(payload, key));
+}
+
 function encodeChunkName(gameId, chunkId, key) {
   const packed = (((gameId & 0xffff) << 16) | (chunkId & 0xffff)) >>> 0;
   const obfuscated = encrypt32(packed, key);
@@ -107,6 +170,7 @@ function decodeChunkName(fileName, key) {
 }
 
 async function unmergeFile(inputFile, outDir, gameIdHex4, key) {
+  const dataKey = getDataKey();
   const gameId = parseHex4(gameIdHex4, "gameId");
   const stat = await fsp.stat(inputFile);
 
@@ -134,7 +198,7 @@ async function unmergeFile(inputFile, outDir, gameIdHex4, key) {
       const chunkFileName = encodeChunkName(gameId, chunkCount, key);
       const chunkPath = path.join(outDir, chunkFileName);
 
-      await fsp.writeFile(chunkPath, chunkBuffer);
+      await writeEncryptedChunk(chunkPath, chunkBuffer, dataKey);
 
       chunkCount += 1;
       offset += bytesRead;
@@ -146,17 +210,8 @@ async function unmergeFile(inputFile, outDir, gameIdHex4, key) {
   console.log(`Wrote ${chunkCount} chunk(s) to ${outDir}`);
 }
 
-function appendFileToStream(filePath, outStream) {
-  return new Promise((resolve, reject) => {
-    const inStream = fs.createReadStream(filePath);
-    inStream.on("error", reject);
-    outStream.on("error", reject);
-    inStream.on("end", resolve);
-    inStream.pipe(outStream, { end: false });
-  });
-}
-
 async function mergeFiles(chunksDir, outputFile, gameIdHex4, key) {
+  const dataKey = getDataKey();
   const requestedGameId = gameIdHex4 ? parseHex4(gameIdHex4, "gameId") : null;
   const dirEntries = await fsp.readdir(chunksDir, { withFileTypes: true });
 
@@ -226,24 +281,54 @@ async function mergeFiles(chunksDir, outputFile, gameIdHex4, key) {
 
   await fsp.mkdir(path.dirname(outputFile), { recursive: true });
 
-  await new Promise(async (resolve, reject) => {
-    const outStream = fs.createWriteStream(outputFile);
-    outStream.on("error", reject);
-
-    try {
-      for (const chunk of chunksToMerge) {
-        await appendFileToStream(chunk.filePath, outStream);
-      }
-      outStream.end(resolve);
-    } catch (error) {
-      outStream.destroy();
-      reject(error);
-    }
-  });
+  await fsp.writeFile(outputFile, Buffer.alloc(0));
+  for (const chunk of chunksToMerge) {
+    const chunkPayload = await readChunkPayload(chunk.filePath, dataKey);
+    await fsp.appendFile(outputFile, chunkPayload);
+  }
 
   console.log(
     `Merged ${chunksToMerge.length} chunk(s) for game ${toHex4(mergeGameId)} into ${outputFile}`
   );
+}
+
+async function migrateChunks(chunksDir, gameIdHex4, key) {
+  const dataKey = getDataKey();
+  const requestedGameId = gameIdHex4 ? parseHex4(gameIdHex4, "gameId") : null;
+  const dirEntries = await fsp.readdir(chunksDir, { withFileTypes: true });
+
+  let migratedCount = 0;
+
+  for (const entry of dirEntries) {
+    if (!entry.isFile()) {
+      continue;
+    }
+    if (!entry.name.toLowerCase().endsWith(".dat")) {
+      continue;
+    }
+
+    let decoded;
+    try {
+      decoded = decodeChunkName(entry.name, key);
+    } catch {
+      continue;
+    }
+
+    if (requestedGameId !== null && decoded.gameId !== requestedGameId) {
+      continue;
+    }
+
+    const chunkPath = path.join(chunksDir, entry.name);
+    const plaintext = await readChunkPayload(chunkPath, dataKey);
+    await writeEncryptedChunk(chunkPath, plaintext, dataKey);
+    migratedCount += 1;
+  }
+
+  if (migratedCount === 0) {
+    throw new Error("no valid chunk files found for the requested game ID");
+  }
+
+  console.log(`Migrated ${migratedCount} chunk(s) in ${chunksDir}`);
 }
 
 async function main() {
@@ -268,6 +353,14 @@ async function main() {
       throw new Error("merge expects: <chunksDir> <outputFile> [gameIdHex4]");
     }
     await mergeFiles(args[0], args[1], args[2], key);
+    return;
+  }
+
+  if (command === "migrate") {
+    if (args.length < 1 || args.length > 2) {
+      throw new Error("migrate expects: <chunksDir> [gameIdHex4]");
+    }
+    await migrateChunks(args[0], args[1], key);
     return;
   }
 
