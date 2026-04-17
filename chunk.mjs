@@ -5,7 +5,7 @@ import fs from "node:fs";
 import fsp from "node:fs/promises";
 import path from "node:path";
 
-const CHUNK_SIZE_BYTES = 20 * 1024 * 1024;
+const CHUNK_SIZE_BYTES = 18 * 1024 * 1024;
 const MAX_CHUNK_ID = 0xffff;
 const DEFAULT_KEY = 0xa5c3f17d;
 const DEFAULT_DATA_KEY = "games-chunk-data-v1";
