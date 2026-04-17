@@ -21,6 +21,7 @@ Usage:
   node chunker.js migrate <chunksDir> [gameIdHex4]
   node chunker.js name <gameIdHex4> <chunkIdHex4>
   node chunker.js decode <chunkFileName>
+  node chunker.js search <chunksDir> <gameIdHex4>
 `);
 }
 
@@ -210,6 +211,67 @@ async function unmergeFile(inputFile, outDir, gameIdHex4, key) {
   console.log(`Wrote ${chunkCount} chunk(s) to ${outDir}`);
 }
 
+async function searchFiles(chunksDir, gameIdHex4, key) {
+  const dataKey = getDataKey();
+  const requestedGameId = gameIdHex4 ? parseHex4(gameIdHex4, "gameId") : null;
+  const dirEntries = await fsp.readdir(chunksDir, { withFileTypes: true });
+
+  const decodedChunks = [];
+
+  for (const entry of dirEntries) {
+    if (!entry.isFile()) {
+      continue;
+    }
+    if (!entry.name.toLowerCase().endsWith(".dat")) {
+      continue;
+    }
+
+    let decoded;
+    try {
+      decoded = decodeChunkName(entry.name, key);
+    } catch {
+      continue;
+    }
+
+    if (requestedGameId !== null && decoded.gameId !== requestedGameId) {
+      continue;
+    }
+
+    decodedChunks.push({
+      filePath: path.join(chunksDir, entry.name),
+      fileName: entry.name,
+      gameId: decoded.gameId,
+      chunkId: decoded.chunkId,
+    });
+  }
+
+  if (decodedChunks.length === 0) {
+    throw new Error("no valid chunk files found for the requested game ID");
+  }
+
+  const uniqueGameIds = [...new Set(decodedChunks.map((chunk) => chunk.gameId))];
+  if (requestedGameId === null && uniqueGameIds.length > 1) {
+    throw new Error(
+      `multiple game IDs found (${uniqueGameIds.map(toHex4).join(", ")}); pass a gameIdHex4 to merge one game`
+    );
+  }
+
+  const mergeGameId = requestedGameId !== null ? requestedGameId : uniqueGameIds[0];
+  const chunksToMerge = decodedChunks
+    .filter((chunk) => chunk.gameId === mergeGameId)
+    .sort((a, b) => a.chunkId - b.chunkId);
+
+  for (let i = 1; i < chunksToMerge.length; i += 1) {
+    if (chunksToMerge[i - 1].chunkId === chunksToMerge[i].chunkId) {
+      throw new Error(`duplicate chunk ID ${toHex4(chunksToMerge[i].chunkId)} detected`);
+    }
+  }
+
+  chunksToMerge.forEach( chunk => {
+    console.log(chunk.fileName);
+  });
+}
+
 async function mergeFiles(chunksDir, outputFile, gameIdHex4, key) {
   const dataKey = getDataKey();
   const requestedGameId = gameIdHex4 ? parseHex4(gameIdHex4, "gameId") : null;
@@ -353,6 +415,14 @@ async function main() {
       throw new Error("merge expects: <chunksDir> <outputFile> [gameIdHex4]");
     }
     await mergeFiles(args[0], args[1], args[2], key);
+    return;
+  }
+
+  if (command === "search") {
+    if (args.length != 2) {
+      throw new Error("search expects: <chunksDir> <gameIdHex4>");
+    }
+    await searchFiles(args[0], args[1], key);
     return;
   }
 
