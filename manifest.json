@@ -172,13 +172,5 @@
     "color": "#34e634",
     "fontUrl": "",
     "fontName": "sans-serif"
-  },
-  {
-    "name": "Super Smash Flash 2",
-    "url": "data://text/html;charset=utf-8,%3Cbody%3E%0A%20%20%20%20%3Cobject%3E%0A%20%20%20%20%20%20%20%20%3Cembed%20src%3D%22https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FStudent-led-Educational-Opportunities%2Fbig-things%40master%2Fssf2.swf%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20%2F%3E%0A%20%20%20%20%3C%2Fobject%3E%0A%0A%20%20%20%20%3Cscript%20src%3D%22https%3A%2F%2Funpkg.com%2F%40ruffle-rs%2Fruffle%22%3E%3C%2Fscript%3E%0A%3C%2Fbody%3E",
-    "type": "blob",
-    "color": "#000",
-    "fontUrl": "",
-    "fontName": "sans-serif"
   }
 ]
