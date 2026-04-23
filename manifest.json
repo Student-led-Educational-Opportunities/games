@@ -172,5 +172,13 @@
     "color": "#34e634",
     "fontUrl": "",
     "fontName": "sans-serif"
+  },
+  {
+    "name": "Chess.com",
+    "url": "https://chess.com",
+    "type": "proxy",
+    "color": "#2c8f27",
+    "fontUrl": "",
+    "fontName": "sans-serif"
   }
 ]
