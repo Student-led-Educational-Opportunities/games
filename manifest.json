@@ -180,5 +180,13 @@
     "color": "#2c8f27",
     "fontUrl": "",
     "fontName": "sans-serif"
+  },
+    {
+    "name": "CrazyGames",
+    "url": "https://crazygames.com",
+    "type": "proxy",
+    "color": "#6740ff",
+    "fontUrl": "",
+    "fontName": "sans-serif"
   }
 ]
