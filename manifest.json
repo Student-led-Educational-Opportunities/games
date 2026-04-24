@@ -175,7 +175,7 @@
   },
   {
     "name": "Chess.com",
-    "url": "https://chess.com",
+    "url": "chess.com",
     "type": "proxy",
     "color": "#2c8f27",
     "fontUrl": "",
@@ -183,7 +183,7 @@
   },
     {
     "name": "CrazyGames",
-    "url": "https://crazygames.com",
+    "url": "crazygames.com",
     "type": "proxy",
     "color": "#6740ff",
     "fontUrl": "",
