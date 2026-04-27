@@ -174,7 +174,7 @@
     "fontName": "sans-serif"
   },
   {
-    "name": "Chess.com",
+    "name": "Chess.com (broken)",
     "url": "chess.com",
     "type": "proxy",
     "color": "#2c8f27",
@@ -182,7 +182,7 @@
     "fontName": "sans-serif"
   },
     {
-    "name": "CrazyGames",
+    "name": "CrazyGames (broken)",
     "url": "crazygames.com",
     "type": "proxy",
     "color": "#6740ff",
